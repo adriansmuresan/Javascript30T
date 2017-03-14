@@ -19,7 +19,16 @@ const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb
 
 const cities = [];
 
-fetch(endpoint).then(blob => blob.json()).then(data => cities.push(...data))
+fetch(endpoint).then(blob => blob.json()).then(data => cities.push(...data));
+
+// figuring out if the city or state matches what was typed
+
+function findMatches(wordToMach, cities) {
+  return cities.filter(place => {
+    const regex = new RegExp(wordToMach, 'gi');
+    return place.city.match(regex) || place.state.match(regex);
+  })
+}
 
 
 </script>
