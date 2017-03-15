@@ -40,15 +40,31 @@
 
     // Array.prototype.every() // is everyone 19 or older?
 
-    
+    const allAdults = people.every(person => ((new Date()).getFullYear()) - person.year >= 19);   //The every() method tests whether all elements in the array pass the test implemented by the provided function.
+
+    console.log({allAdults});
 
     // Array.prototype.find()
-    // Find is like filter, but instead returns just the one you are looking for
+    // Find is like filter, but instead returns just the one you are looking for  //The find() method returns the value of the first element in the array that satisfies the provided testing function. Otherwise undefined is returned.
     // find the comment with the ID of 823423
 
-    // Array.prototype.findIndex()
+    const comment = comments.find((comment) => (comment.id === 823423));
+
+    console.log(comment);
+
+    // Array.prototype.findIndex()   // The findIndex() method returns the index of the first element in the array that satisfies the provided testing function. Otherwise -1 is returned.
     // Find the comment with this ID
     // delete the comment with the ID of 823423
+
+    const index = comments.findIndex((comment) => (comment.id === 823423));
+    console.log(index);
+
+    // comments.splice(index, 1);
+
+    const newComments = [
+      ...comments.slice(0, index),           // ... is the spread operator in ES6 
+      ...comments.slice(index + 1)
+    ];
 
   </script>
 </body>
