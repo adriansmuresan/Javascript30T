@@ -13,6 +13,16 @@
         const ctx = canvas.getContext('2d');   // in html you can draw on the context, 2d or 3d
         canvas.height = window.innerHeight;
         canvas.width = window.innerWidth;
+
+        ctx.strokeStyle = '#BADA55';
+        ctx.lineJoin = 'round';
+        ctx.lineCap = 'round';
+
+        let isDrawing = false;
+        let lastX = 0;
+        let lastY = 0;
+
+        
     </script>
 
     <style>
