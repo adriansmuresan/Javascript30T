@@ -89,6 +89,7 @@
     </div>
 
     <script>
+        // a function that prevents our checkSlide to run to much, instead it's going to run every 20 ms so we don,t have performance issues
         function debounce(func, wait = 20, immediate = true) {
             var timeout;
             return function() {
@@ -105,13 +106,19 @@
             };
         }
 
+
+
         const sliderImages = document.querySelectorAll('.slide-in');
 
         function checkSlide(e) {
-          console.log(e);
+          // console.log(window.scrollY);
+          sliderImages.forEach(slideImage => {
+            const slideInAt = (window.scrollY + window. innerHeight) - slideImage.height / 2;
+            
+          })
         }
 
-        window.addEventListener('scroll', checkSlide);
+        window.addEventListener('scroll', debounce(checkSlide));
     </script>
 
     <style>
