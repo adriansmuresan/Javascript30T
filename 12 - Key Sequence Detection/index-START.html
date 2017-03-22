@@ -7,6 +7,14 @@
 </head>
 <body>
 <script>
+const pressedkey = [];
+const secretCode = 'wesbos';
+
+window.addEventListener('keyup', (e) => {
+  console.log(e.key);
+  pressedkey.push(e.key);
+  console.log(pressedkey);
+})
 </script>
 </body>
 </html>
