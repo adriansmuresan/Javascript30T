@@ -37,44 +37,51 @@
     </style>
 
     <script>
-      const hero = document.querySelector('.hero');
+        const hero = document.querySelector('.hero');
 
-      // grab the text in the h1 element
-      const text = hero.querySelector('h1');
+        // grab the text in the h1 element
+        const text = hero.querySelector('h1');
 
-      const walk = 200; // 200px the distance from the div that the shadow will move to
+        const walk = 200; // 200px the distance from the div that the shadow will move to
 
-      function shadow(e) {
-        // const width = hero.offsetWidth;
-        // const height = hero.offsetHeight;
-        // or using ES6
-        const { offsetWidth: width, offsetHeight: height } = hero;
-        let { offsetX: x, offsetY: y} = e;
+        function shadow(e) {
+            // const width = hero.offsetWidth;
+            // const height = hero.offsetHeight;
+            // or using ES6
+            const {
+                offsetWidth: width,
+                offsetHeight: height
+            } = hero;
+            let {
+                offsetX: x,
+                offsetY: y
+            } = e;
 
-        // console.log(x, y); gives us the coordinates of the mouse as we mouve arround the screen, we also need to better isolate the mousemove since when we aproach the div it selects it's children too the h1 tag
+            // console.log(x, y); gives us the coordinates of the mouse as we mouve arround the screen, we also need to better isolate the mousemove since when we aproach the div it selects it's children too the h1 tag
 
-        if (this !== e.target) {
-          x = x + e.target.offsetLeft;
-          y = y + e.target.offsetTop;
+            if (this !== e.target) {
+                x = x + e.target.offsetLeft;
+                y = y + e.target.offsetTop;
+            }
+
+            // console.log(x, y);
+
+            const xWalk = Math.round((x / width * walk) - (walk / 2));
+            const yWalk = Math.round((y / height * walk) - (walk / 2));
+
+            // console.log(xWalk, yWalk);
+
+            text.style.textShadow =
+                `
+                  ${xWalk}px ${yWalk}px 0 rgba(255, 0, 255, 0.7),
+                  ${xWalk * -1}px ${yWalk}px 0 rgba(0, 255, 255, 0.7),
+                  ${yWalk}px ${xWalk * -1}px 0 rgba(0, 255, 0, 0.7),
+                  ${yWalk * -1}px ${xWalk}px 0 rgba(0, 0, 255, 0.7)
+                `;
+
         }
 
-        // console.log(x, y);
-
-        const xWalk = Math.round((x / width * walk) - (walk / 2));
-        const yWalk = Math.round((y / height * walk) - (walk / 2));
-
-        // console.log(xWalk, yWalk);
-
-        text.style.textShadow = `
-          ${xWalk}px ${yWalk}px 0 rgba(255, 0, 255, 0.7),
-          ${xWalk * -1}px ${yWalk}px 0 rgba(0, 255, 255, 0.7),
-          ${yWalk}px ${xWalk * -1}px 0 rgba(0, 255, 0, 0.7),
-          ${yWalk * -1}px ${xWalk}px 0 rgba(0, 0, 255, 0.7)
-        `;
-
-      }
-
-      hero.addEventListener('mousemove', shadow);
+        hero.addEventListener('mousemove', shadow);
     </script>
 
 </body>
