@@ -41,7 +41,7 @@ function takePhoto() {
   const link = document.createElement('a');
   link.href = data;
   link.setAttribute('download', 'average');
-  link.textContent = 'Download Image';
+  link.innerHTML = `<img src="${data}" alt="Average guy" />`;
   strip.insertBefore(link, strip.firstChild);
 }
 
