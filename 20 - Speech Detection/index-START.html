@@ -31,6 +31,8 @@
              console.log(transcript);
         });
 
+        recognition.addEventListener('end', recognition.start); // run the function again when the event ends
+
         recognition.start();
 
     </script>
