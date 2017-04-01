@@ -14,33 +14,34 @@
     <script>
         window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-        const recognition = new SpeechRecognition();  // create a new instance of SpeechRecognition
-        recognition.interimresults = true;  // this is populating the list as we speak, we don,t have to stop
+        const recognition = new SpeechRecognition(); // create a new instance of SpeechRecognition
+        recognition.interimresults = true; // this is populating the list as we speak, we don,t have to stop
 
         let p = document.createElement('p'); // creates a new paragraph each time we stop speaking
         const words = document.querySelector('.words');
-        words.appendChild(p);  // puts the new paragraph in the dom
+        words.appendChild(p); // puts the new paragraph in the dom
 
         recognition.addEventListener('result', e => {
-          console.log(e.results);
-          const transcript = Array.from(e.results)
-             .map(result => result[0])
-             .map(result => result.transcript)
-             .join('')
+            console.log(e.results);
+            const transcript = Array.from(e.results)
+                .map(result => result[0])
+                .map(result => result.transcript)
+                .join('')
 
-             p.textContent = transcript;
-             if (e.results[0].isFinal) {
-               p = document.createElement('p');
-               words.appendChild(p);
-             }
+            p.textContent = transcript;
+            if (e.results[0].isFinal) {
+                p = document.createElement('p');
+                words.appendChild(p);
+            }
 
-          console.log(transcript);
+            // here you can add your own function to trigger the sppech recognition and call a function for example to show you the weather
+
+            console.log(transcript);
         });
 
         recognition.addEventListener('end', recognition.start); // run the function again when the event ends
 
         recognition.start();
-
     </script>
 
 
