@@ -40,7 +40,7 @@
         const speakButton = document.querySelector('#speak');  // button for the speak
         const stopButton = document.querySelector('#stop');   // button for the stop
 
-        msg.text = document.querySelector('[name="text"]').value;
+        msg.text = document.querySelector('[name="text"]').value;  // getting the text from the page
 
         function populateVoices() {
           voices = this.getVoices();
@@ -53,8 +53,13 @@
 
         function setVoice() {
           // console.log(this.value);
+          msg.voice = voices.find(voice => voice.name === this.value);   // finds the voice with the same attribute as the option selected
+          toggle();
+        }
 
-          msg.voice = voices.find(voice => voice.name === this.value);
+        function toggle() {
+          speechSynthesis.cancel();
+          speechSynthesis.speak(msg);
         }
 
         speechSynthesis.addEventListener('voiceschanged', populateVoices);
