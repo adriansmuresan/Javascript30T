@@ -40,9 +40,13 @@
   let startX;
   let scrollLeft;
 
-  slider.addEventListener('mousedown', () => {
+  slider.addEventListener('mousedown', (e) => {
     isDown = true;
     slider.classList.remove('active');
+    //console.log(e.pageX);
+    startX = e.pageX - slider.offsetLeft;  // determines the position of the page when we click/grab it
+    scrollLeft = slider.scrollLeft;
+    console.log(startX);
   });
 
   slider.addEventListener('mouseleave', () => {
@@ -58,7 +62,7 @@
   slider.addEventListener('mousemove', () => {
     if (!isDown) return; // stop the fn from running
     console.count(isDown);
-
+    console.log(startX);
   });
 
 </script>
