@@ -59,10 +59,17 @@
     slider.classList.remove('active');
   });
 
-  slider.addEventListener('mousemove', () => {
+  slider.addEventListener('mousemove', (e) => {
     if (!isDown) return; // stop the fn from running
-    console.count(isDown);
-    console.log(startX);
+    //console.count(isDown);
+    //console.log(startX);
+
+    e.preventDefault(); // prevents the selecting of the text or other weird stuff that the browser might think you are selecting
+    const x = e.pageX - slider.offsetLeft;
+    //console.log({x, startX});
+
+    const walk = x - startX; // the distance from when we clicked to where we mouved the mouse
+    console.log(walk);
   });
 
 </script>
