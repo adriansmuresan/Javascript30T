@@ -38,7 +38,7 @@
   const moles = document.querySelectorAll('.mole');
   let lastHole;
 
-  function randTime(min, max) {
+  function randomTime(min, max) {
     return Math.floor(Math.random() * (max-min) + min);
   }
 
@@ -48,12 +48,18 @@
     //console.log(hole);
     if (hole === lastHole) {
       console.log('Ah no thats the same one bud!');
-      return randomHole;
+      return randomHole(holes);
     }
     lastHole = hole;
     return hole;
   }
 
+
+  function peep() {
+    const time = randomTime(200, 1000); // 200 miliseconds and 1 second
+    const hole = randomHole(holes);
+    console.log(time, hole);
+  }
 </script>
 </body>
 </html>
